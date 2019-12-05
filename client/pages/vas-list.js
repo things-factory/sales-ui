@@ -87,7 +87,7 @@ class VasList extends localize(i18next)(PageView) {
     return this.shadowRoot.querySelector('data-grist')
   }
 
-  pageInitialized() {
+  async pageInitialized() {
     this._currencyTypes = await getCodeByName('CURRENCY_TYPES')
 
     this._searchFields = [
