@@ -156,7 +156,7 @@ class VasList extends localize(i18next)(PageView) {
           type: 'string',
           name: 'uom',
           header: i18next.t('field.uom'),
-          record: { editable: true, align: 'center' },
+          record: { editable: true, align: 'left' },
           imex: { header: i18next.t('field.uom'), key: 'uom', width: 50, type: 'string' },
           sortable: true,
           width: 160
