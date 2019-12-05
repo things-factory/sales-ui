@@ -1,5 +1,6 @@
 import '@things-factory/form-ui'
 import '@things-factory/grist-ui'
+import { getCodeByName } from '@things-factory/code-base'
 import { i18next, localize } from '@things-factory/i18n-base'
 import { openImportPopUp } from '@things-factory/import-ui'
 import { client, CustomAlert, gqlBuilder, isMobileDevice, PageView, ScrollbarStyles } from '@things-factory/shell'
@@ -87,6 +88,8 @@ class VasList extends localize(i18next)(PageView) {
   }
 
   pageInitialized() {
+    this._currencyTypes = await getCodeByName('CURRENCY_TYPES')
+
     this._searchFields = [
       {
         label: i18next.t('field.name'),
@@ -151,12 +154,36 @@ class VasList extends localize(i18next)(PageView) {
         },
         {
           type: 'string',
+          name: 'uom',
+          header: i18next.t('field.uom'),
+          record: { editable: true, align: 'center' },
+          imex: { header: i18next.t('field.uom'), key: 'uom', width: 50, type: 'string' },
+          sortable: true,
+          width: 160
+        },
+        {
+          type: 'code',
           name: 'currency',
           header: i18next.t('field.currency'),
-          record: { editable: true, align: 'center' },
-          imex: { header: i18next.t('field.currency'), key: 'currency', width: 50, type: 'string' },
+          record: {
+            editable: true,
+            align: 'center',
+            codeName: 'CURRENCY_TYPES'
+          },
+          imex: {
+            header: i18next.t('field.currency'),
+            key: 'type',
+            width: 50,
+            type: 'array',
+            arrData: this._currencyTypes.map(_currencyType => {
+              return {
+                name: _currencyType.name,
+                id: _currencyType.name
+              }
+            })
+          },
           sortable: true,
-          width: 80
+          width: 100
         },
         {
           type: 'float',
@@ -208,6 +235,7 @@ class VasList extends localize(i18next)(PageView) {
               description
               defaultPrice
               currency
+              uom
               operationGuideType
               operationGuide
               updatedAt

@@ -1,3 +1,4 @@
 {
-  "label.module": "module"
+  "label.module": "module",
+  "field.uom": "uom"
 }
