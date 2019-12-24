@@ -172,7 +172,7 @@ class VasList extends localize(i18next)(PageView) {
           },
           imex: {
             header: i18next.t('field.currency'),
-            key: 'type',
+            key: 'currency',
             width: 50,
             type: 'array',
             arrData: this._currencyTypes.map(_currencyType => {
