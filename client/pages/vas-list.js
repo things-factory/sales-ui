@@ -261,6 +261,7 @@ class VasList extends localize(i18next)(PageView) {
       patches.map(vas => {
         if (vas.defaultPrice) {
           vas.defaultPrice = parseFloat(vas.defaultPrice)
+          return vas
         }
       })
 
