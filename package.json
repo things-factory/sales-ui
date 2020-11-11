@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/sales-ui",
-  "version": "2.0.3",
+  "version": "2.7.0-uat.0",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -33,7 +33,7 @@
     "@things-factory/grist-ui": "^2.0.0",
     "@things-factory/i18n-base": "^2.0.0",
     "@things-factory/import-ui": "^2.0.0",
-    "@things-factory/sales-base": "^2.0.0",
+    "@things-factory/sales-base": "^2.7.0-uat.0  <2.7.0",
     "@things-factory/shell": "^2.0.0"
   },
   "devDependencies": {}
