@@ -91,6 +91,7 @@ class VasList extends localize(i18next)(PageView) {
 
   async pageInitialized() {
     this._currencyTypes = await getCodeByName('CURRENCY_TYPES')
+    this._vasTypes = await getCodeByName('VAS_TYPES')
 
     this._searchFields = [
       {
@@ -130,6 +131,30 @@ class VasList extends localize(i18next)(PageView) {
           imex: { header: i18next.t('field.description'), key: 'description', width: 50, type: 'string' },
           sortable: true,
           width: 200
+        },
+        {
+          type: 'code',
+          name: 'type',
+          header: i18next.t('field.type'),
+          record: {
+            editable: true,
+            align: 'center',
+            codeName: 'VAS_TYPES'
+          },
+          imex: {
+            header: i18next.t('field.type'),
+            key: 'type',
+            width: 70,
+            type: 'array',
+            arrData: this._vasTypes.map(_vasTypes => {
+              return {
+                name: _vasTypes.name,
+                id: _vasTypes.name
+              }
+            })
+          },
+          sortable: true,
+          width: 100
         },
         {
           type: 'string',
@@ -238,6 +263,7 @@ class VasList extends localize(i18next)(PageView) {
               defaultPrice
               currency
               uom
+              type
               operationGuideType
               operationGuide
               updatedAt
